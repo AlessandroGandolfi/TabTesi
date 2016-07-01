@@ -1,4 +1,4 @@
-<cfquery datasource="tesikcm" name="selectDati">
+<cfquery datasource="#application.DSN#" name="selectDati">
     select *
     from tesikcm.v_dictionary_mantis
 </cfquery>
