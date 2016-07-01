@@ -3,27 +3,19 @@
     from tesikcm.v_dictionary_mantis
 </cfquery>
 
-<table>
-    <tr>
-        <th>variable</th>
-        <th>comment</th>
-        <th>origin</th>
-        <th>NOTES</th>
-        <th>ticket</th>
-        <th>summary</th>
-        <th>description</th>
-        <th>additional_information</th>
-    </tr>
-    <cfoutput query="selectDati">
-        <tr>
-            <td>#variable#</td>
-            <td>#comment#</td>
-            <td>#origin#</td>
-            <td>#NOTES#</td>
-            <td>#ticket#</td>
-            <td>#summary#</td>
-            <td>#description#</td>
-            <td>#additional_information#</td>
-        </tr>
-    </cfoutput>
-</table>
+<cfdiv id="divContBtn">
+
+</cfdiv>
+
+<cfdiv id="divTabella">
+    <cftable query="selectDati" maxRows="3" startRow="1" htmltable>
+        <cfcol header="<b>variable</b>" align="left" text="#variable#">
+        <cfcol header="<b>comment</b>" align="left" text="#comment#">
+        <cfcol header="<b>origin</b>" align="left" text="#origin#">
+        <cfcol header="<b>NOTES</b>" align="left" text="#NOTES#">
+        <cfcol header="<b>ticket</b>" align="left" text="#ticket#">
+        <cfcol header="<b>summary</b>" align="left" text="#summary#">
+        <cfcol header="<b>description</b>" align="left" text="#description#">
+        <cfcol header="<b>additional_information</b>" align="left" text="#additional_information#">
+    </cftable>
+</cfdiv>
