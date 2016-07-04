@@ -23,7 +23,7 @@ nella pagina principale di selezione */
 
 /* definisco la posizione e le dimensioni del div contenente i bottoni 
 nelle pagine dove sono presenti le tabelle */
-#divContBtn {
+#formContBtn {
 	/* dati della posizione, uso le percentuali per adattamento alla grandezza della pagina */
 	position:absolute;
 	left:25%;
@@ -35,7 +35,7 @@ nelle pagine dove sono presenti le tabelle */
 
 /* definisco la posizione del div contenente il bottone per poter tornare 
 alla pagina principale di selezione nelle pagine dove sono presenti le tabelle */
-#divBtnSalva {
+#btnSalva {
 	position:absolute;
 	left:5%;
 	top:20%;
@@ -43,9 +43,9 @@ alla pagina principale di selezione nelle pagine dove sono presenti le tabelle *
 
 /* definisco la posizione del div contenente il bottone per poter visualizzare 
 gli altri dati nelle pagine dove sono presenti le tabelle */
-#divBtnElimina {
+#btnElimina {
 	position:absolute;
-	left:45%;
+	left:70%;
 	top:20%;
 }
 
@@ -86,8 +86,6 @@ table {
 	font-family:"Arial Verdana", Arial, sans-serif;
 	/* dato dello spazio tra caselle */
 	border-spacing:3px;
-
-	table-layout:fixed;
 }
 
 /* definisco la grafica e la posizione delle scritte nelle caselle */
