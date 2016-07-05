@@ -1,11 +1,30 @@
 <cfcomponent>
     <cffunction name="eliminaDati" access="remote">
-        <cfmessagebox type="confirm" name="mbEliminaConferma" buttonType="yesno" message="Eliminare i dati definitivamente?"/>
-        <cfquery datasource="#application.DSN#" name="eliminaDatiDB">
-            delete from dictionary left join dictionarytickets on (dictionary.ID = dictionarytickets.dictionaryid)
-            where VARIABLE in (#ListQualify(form.cbElimina,"'")#)
+        <!--- eseguo diverse query perchè non posso eliminare i dati direttamente dalla vista del database --->
+        <!--- seleziono gli ID della tabella "dictionary" tramite una query e li salvo in un array --->
+        <cfquery name="getDictionaryID" datasource="#application.DSN#">
+            select ID
+            from dictionary
+            where VARIABLE in (#ListQualify(cbElimina,"'")#)
         </cfquery>
-        <cfmessagebox type="alert" name="mbElimina" message="Dati eliminati"/>
+
+        <cfset arrayID = ArrayNew(1)>
+        <cfloop index="indexLoop" from="1" to="#getDictionaryID.RecordCount#">
+            <cfset arrayID[#indexLoop#] = "'"&getDictionaryID.ID[#indexLoop#]&"'">
+        </cfloop>
+        
+        <!--- tramite gli array elimino le righe della tabella "dictionarytickets" usate per fare il join dei dati che verranno eliminati --->
+        <cfquery name="eliminaDatiDatabaseTickets" datasource="#application.DSN#">
+            delete from tesikcm.dictionarytickets
+            where dictionarytickets.dictionaryid in (#ArrayToList(arrayID, ",")#)
+        </cfquery>
+
+        <!--- elimino i dati dalla tabella "dictionary" --->
+        <cfquery datasource="#application.DSN#" name="eliminaDatiDatabase">
+            delete from tesikcm.dictionary
+            where VARIABLE in (#ListQualify(cbElimina,"'")#)
+        </cfquery>
+        
     </cffunction>
     
     <!---
