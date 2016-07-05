@@ -24,14 +24,26 @@
             delete from tesikcm.dictionary
             where VARIABLE in (#ListQualify(cbElimina,"'")#)
         </cfquery>
-        
     </cffunction>
-    
+        
+    <cffunction name="rigaVuota" access="remote">
+        <cfset nuovaRiga = "<tr>
+                                <td><cftextarea validateAt='onSubmit' name='txtNewVar'></cftextarea></td>
+                                <td><cftextarea validateAt='onSubmit' name='txtNewCom'></cftextarea></td>
+                                <td></td>
+                                <td><cftextarea validateAt='onSubmit' name='txtNewNotes'></cftextarea></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>">
+    </cffunction>
     <!---
     <cffunction name="salvaModifiche" access="remote">
-        <cfquery datasource="#application.DSN#" name="salvaModificheDB">
-            update tesikcm.v_dictionary_mantis
-            set 
+        <cfquery datasource="#application.DSN#" name="salvaModificheDatabase">
+            update tesikcm.dictionary
+            set COMMENT= ,NOTES = 
             where 
         </cfquery>
         <cfmessagebox type="alert" name="mbSalvaMod" message="Modifiche salvate"/>

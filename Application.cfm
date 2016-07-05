@@ -19,5 +19,19 @@ utilizzate nel codice o per applicare le librerie jQuery agli elementi delle pag
 
     function apriMB(mbox)  { 
         ColdFusion.MessageBox.show(mbox); 
-    } 
+    }
+
+    /*
+    function abilitaTD() {
+        $('.tdChange').on('dblclick', function() {
+            $this = $(this);
+            $input = $('<textarea>', {
+                html: $this.text(),
+                submit: function() {
+                    $this.html($input.val());
+                }
+            }).appendTo($this.empty());
+        });
+    }
+    */
 </script>

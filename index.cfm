@@ -32,9 +32,9 @@
                 <!--- utilizzo due classi diverse per applicare i colori alle righe --->
                 <tr class="<cfif (selectDati.currentRow MOD 2 EQ 0)>color1<cfelse>color2</cfif>">
                     <td>#variable#</td>
-                    <td>#comment#</td>
+                    <td class="tdChange">#comment#</td>
                     <td>#origin#</td>
-                    <td>#NOTES#</td>
+                    <td class="tdChange">#NOTES#</td>
                     <td>#ticket#</td>
                     <td>#summary#</td>
                     <td>#description#</td>
@@ -44,5 +44,10 @@
                 </tr>
             </cfoutput>
         </table>
+        <!---
+        <script type="text/javascript">
+            abilitaTD();
+        </script>
+        --->
     </cfdiv>
 </cfform>
