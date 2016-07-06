@@ -25,20 +25,34 @@
             where VARIABLE in (#ListQualify(cbElimina,"'")#)
         </cfquery>
     </cffunction>
-        
-    <cffunction name="rigaVuota" access="remote">
-        <cfset nuovaRiga = "<tr>
-                                <td><cftextarea validateAt='onSubmit' name='txtNewVar'></cftextarea></td>
-                                <td><cftextarea validateAt='onSubmit' name='txtNewCom'></cftextarea></td>
-                                <td></td>
-                                <td><cftextarea validateAt='onSubmit' name='txtNewNotes'></cftextarea></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>">
+
+    <cffunction name="alimTabella" access="remote">
+        <!--- utilizzo una query per prendere i dati dal database sul server --->
+        <cfquery datasource="#application.DSN#" name="selectDati">
+            select *
+            from tesikcm.v_dictionary_mantis
+        </cfquery>
+    
+        <cfoutput startRow="#rigaInizio#" maxRows="5" query="selectDati">
+            <!--- utilizzo due classi diverse per applicare i colori alle righe --->
+            <tr class="<cfif (selectDati.currentRow MOD 2 EQ 0)>color1<cfelse>color2</cfif>">
+                <td>#variable#</td>
+                <td class="tdChange">#comment#</td>
+                <td>#origin#</td>
+                <td class="tdChange">#NOTES#</td>
+                <td>#ticket#</td>
+                <td>#summary#</td>
+                <td>#description#</td>
+                <td>#additional_information#</td>
+                <!--- utilizzo la checkbox in questa casella nel caso dovesse essere eliminata --->
+                <td><input name="cbElimina" type="checkbox" value="#variable#"></td>
+            </tr>
+        </cfoutput>
+        <script type="text/javascript">
+            rigaVuota();
+        </script>
     </cffunction>
+
     <!---
     <cffunction name="salvaModifiche" access="remote">
         <cfquery datasource="#application.DSN#" name="salvaModificheDatabase">
