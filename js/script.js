@@ -31,26 +31,36 @@ function rigaVuota() {
 	abilitaTD();
 }
 
-function aggiornaComment() {
-	var table = document.getElementById("tabDati").getElementsByTagName("tbody")[0];
-
-	for(var i = 1; i < table.getElementsByTagName("tr").length; i++){
-		console.log(table.getElementsByTagName("tr")[i].getElementsByTagName("td")[1].innerHTML);
-	}
-}
-
 function disabilitaTD() {
 	$('.noChange').off('dblclick');
 }
 
 function abilitaTD() {
-    $('.tdChange').on('dblclick', function() {
+    $('.tdChangeComm').on('dblclick', function() {
         $this = $(this);
-        $input = $('<textarea>', {
-            html: $this.text(),
-            submit: function() {
-                $this.html($input.val());
-            }
+        $hid = $('<input>', {
+			type: 'hidden',
+            value: $this.text(),
+			name: 'hidModComm'
         }).appendTo($this.empty());
+
+        $txt = $('<textarea>', {
+            html: $hid.val(),
+			name: 'txtModComm'
+        }).appendTo($this);
+    });
+
+	$('.tdChangeNotes').on('dblclick', function() {
+        $this = $(this);
+        $hid = $('<input>', {
+			type: 'hidden',
+            value: $this.text(),
+			name: 'hidModNotes'
+        }).appendTo($this.empty());
+
+        $txt = $('<textarea>', {
+            html: $hid.val(),
+			name: 'txtModNotes'
+        }).appendTo($this);
     });
 }

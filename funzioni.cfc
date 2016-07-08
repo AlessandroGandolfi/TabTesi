@@ -16,7 +16,7 @@
         <!--- tramite gli array elimino le righe della tabella "dictionarytickets" usate per fare il join dei dati che verranno eliminati --->
         <cfquery name="eliminaDatiDatabaseTickets" datasource="#application.DSN#">
             delete from tesikcm.dictionarytickets
-            where dictionarytickets.dictionaryid in (#ArrayToList(arrayID, ",")#)
+            where dictionarytickets.dictionaryid in (#ArrayToList(arrayID,",")#)
         </cfquery>
 
         <!--- elimino i dati dalla tabella "dictionary" --->
@@ -37,9 +37,9 @@
             <!--- utilizzo due classi diverse per applicare i colori alle righe --->
             <tr class="<cfif (selectDati.currentRow MOD 2 EQ 0)>color1<cfelse>color2</cfif>">
                 <td>#variable#</td>
-                <td class="tdChange">#comment#</td>
+                <td class="tdChangeComm">#comment#</td>
                 <td>#origin#</td>
-                <td class="tdChange">#NOTES#</td>
+                <td class="tdChangeNotes">#NOTES#</td>
                 <td>#ticket#</td>
                 <td>#summary#</td>
                 <td>#description#</td>
@@ -54,13 +54,35 @@
     </cffunction>
 
     <!---
-    <cffunction name="salvaModifiche" access="remote">
-        <cfquery datasource="#application.DSN#" name="salvaModificheDatabase">
-            update tesikcm.dictionary
-            set COMMENT= ,NOTES = 
-            where 
-        </cfquery>
-        <cfmessagebox type="alert" name="mbSalvaMod" message="Modifiche salvate"/>
+    <cffunction name="salvaModificheComm" access="remote">
+        <cfset listModComm = ListQualify(testoModificatoComm,"'")>
+        <cfset listOrigComm = ListQualify(testoOriginaleComm,"'")>
+        <cfset arrayModComm = ListToArray(listModComm,",",true,false)>
+        <cfset arrayOrigComm = ListToArray(listOrigComm,",",true,false)>
+
+        <cfloop index="indexLoop" from="0" to="#ArrayLen(arrayModComm)#">
+            <cfquery name="aggiornaComm" datasource="#application.DSN#">
+                update tesikcm.dictionary
+                set COMMENT = #arrayModComm[indexLoop]#
+                where COMMENT = #arrayOrigComm[indexLoop]#
+            </cfquery>
+        </cfloop>
     </cffunction>
     --->
+
+    <cffunction name="salvaModificheNotes" access="remote">
+        <cfset arrayModNotes = ListToArray(testoModificatoNotes,",",true,false)>
+        <cfset arrayOrigNotes = ListToArray(testoOriginaleNotes,",",true,false)>
+        <cfdump var = "#arrayOrigNotes#">
+        <!---
+        <cfloop index="indexNotes" from="1" to="#ArrayLen(arrayModNotes)#">
+            <cfquery name="aggiornaNotes" datasource="#application.DSN#">
+                update tesikcm.dictionary
+                set NOTES = "'"&#arrayModNotes[indexNotes]#&"'"
+                where NOTES = "'"&#arrayOrigNotes[indexNotes]#&"'"
+            </cfquery>
+        </cfloop>
+        --->
+    </cffunction>
+
 </cfcomponent>
