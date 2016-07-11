@@ -32,19 +32,28 @@
 </cfif>
 
 <cfif StructKeyExists(form, "salvaDati")>
-    <!---
+    
     <cfif IsDefined("txtModComm")>
         <cfinvoke component="#objGestione#" method="salvaModificheComm">
             <cfinvokeargument name="testoModificatoComm" value="#form.txtModComm#">
-            <cfinvokeargument name="testoOriginaleComm" value="#form.hidModComm#">
+            <cfinvokeargument name="variableRiga" value="#form.hidVariable#">
         </cfinvoke>
     </cfif>
-    --->
+    
     <cfif IsDefined("txtModNotes")>
         <cfinvoke component="#objGestione#" method="salvaModificheNotes">
             <cfinvokeargument name="testoModificatoNotes" value="#form.txtModNotes#">
-            <cfinvokeargument name="testoOriginaleNotes" value="#form.hidModNotes#">
+            <cfinvokeargument name="variableRiga" value="#form.hidVariable#">
         </cfinvoke>
     </cfif>
+
+    <cfif IsDefined("txtNewVar")>
+        <cfinvoke component="#objGestione#" method="salvaNuovoDato">
+            <cfinvokeargument name="newVariable" value="#form.txtNewVar#">
+            <cfinvokeargument name="newComment" value="#form.txtNewComm#">
+            <cfinvokeargument name="newNotes" value="#form.txtNewNotes#">
+        </cfinvoke>
+    </cfif>
+
     <!--- <cflocation url="index.cfm"> --->
 </cfif>

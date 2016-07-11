@@ -48,41 +48,50 @@
                 <td><input name="cbElimina" type="checkbox" value="#variable#"></td>
             </tr>
         </cfoutput>
-        <script type="text/javascript">
-            rigaVuota();
-        </script>
     </cffunction>
 
-    <!---
     <cffunction name="salvaModificheComm" access="remote">
+        <!---
         <cfset listModComm = ListQualify(testoModificatoComm,"'")>
-        <cfset listOrigComm = ListQualify(testoOriginaleComm,"'")>
+        <cfset listVariable = ListQualify(variableRiga,"'")>
         <cfset arrayModComm = ListToArray(listModComm,",",true,false)>
-        <cfset arrayOrigComm = ListToArray(listOrigComm,",",true,false)>
+        <cfset arrayVariable = ListToArray(listVariable,",",true,false)>
+        --->
+        <cfset arrayModComm = ListToArray(testoModificatoComm,",",true,false)>
+        <cfset arrayVariable = ListToArray(variableRiga,",",true,false)>
 
-        <cfloop index="indexLoop" from="0" to="#ArrayLen(arrayModComm)#">
+        <cfloop index="indexComm" from="1" to="#ArrayLen(arrayModComm)#">
             <cfquery name="aggiornaComm" datasource="#application.DSN#">
                 update tesikcm.dictionary
-                set COMMENT = #arrayModComm[indexLoop]#
-                where COMMENT = #arrayOrigComm[indexLoop]#
+                set DESCRIPTION = '#arrayModComm[indexComm]#'
+                where VARIABLE = '#arrayVariable[indexComm]#'
             </cfquery>
         </cfloop>
     </cffunction>
-    --->
 
     <cffunction name="salvaModificheNotes" access="remote">
-        <cfset arrayModNotes = ListToArray(testoModificatoNotes,",",true,false)>
-        <cfset arrayOrigNotes = ListToArray(testoOriginaleNotes,",",true,false)>
-        <cfdump var = "#arrayOrigNotes#">
         <!---
+        <cfset listModNotes = ListQualify(testoModificatoNotes,"'")>
+        <cfset listVariable = ListQualify(variableRiga,"'")>
+        <cfset arrayModNotes = ListToArray(listModNotes,",",true,false)>
+        <cfset arrayVariable = ListToArray(listVariable,",",true,false)>
+        --->
+        <cfset arrayModNotes = ListToArray(testoModificatoNotes,",",true,false)>
+        <cfset arrayVariable = ListToArray(variableRiga,",",true,false)>
+        
         <cfloop index="indexNotes" from="1" to="#ArrayLen(arrayModNotes)#">
             <cfquery name="aggiornaNotes" datasource="#application.DSN#">
                 update tesikcm.dictionary
-                set NOTES = "'"&#arrayModNotes[indexNotes]#&"'"
-                where NOTES = "'"&#arrayOrigNotes[indexNotes]#&"'"
+                set NOTES = '#arrayModNotes[indexNotes]#'
+                where VARIABLE = '#arrayVariable[indexNotes]#'
             </cfquery>
         </cfloop>
-        --->
     </cffunction>
 
+    <cffunction name="salvaNuovoDato" access="remote">
+        <cfquery name="salvaDati" datasource="#application.DSN#">
+            insert into tesikcm.dictionary (VARIABLE, DESCRIPTION, NOTES)
+            values ('#newVariable#', '#newComment#', '#newNotes#')
+        </cfquery>
+    </cffunction>
 </cfcomponent>

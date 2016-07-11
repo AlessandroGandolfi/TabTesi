@@ -28,6 +28,10 @@
                         <cfinvokeargument name="rigaInizio" value="#rigaInizio#">
                     </cfinvoke>
                 </table>
+                
+                <script type="text/javascript">
+                    rigaVuota();
+                </script>
             </div>
         </cfform>
     </body>
