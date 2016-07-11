@@ -55,5 +55,5 @@
         </cfinvoke>
     </cfif>
 
-    <!--- <cflocation url="index.cfm"> --->
+    <cflocation url="index.cfm">
 </cfif>
