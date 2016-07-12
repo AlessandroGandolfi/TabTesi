@@ -24,11 +24,13 @@
                         <th>Elimina</th>
                     </tr>
                     
+                    <!--- richiamo la funzione che alimenta la tabella --->
                     <cfinvoke component="funzioni" method = "alimTabella">
                         <cfinvokeargument name="rigaInizio" value="#rigaInizio#">
                     </cfinvoke>
                 </table>
-                
+
+                <!--- richiamo la funzione JS che inserisce la riga nuova al fondo della tabella --->
                 <script type="text/javascript">
                     rigaVuota();
                 </script>

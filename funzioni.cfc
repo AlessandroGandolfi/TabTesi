@@ -57,9 +57,11 @@
         <cfset arrayModComm = ListToArray(listModComm,",",true,false)>
         <cfset arrayVariable = ListToArray(listVariable,",",true,false)>
         --->
+        <!--- salvo in degli array gli elementi delle liste passate come parametri ---> 
         <cfset arrayModComm = ListToArray(testoModificatoComm,",",true,false)>
         <cfset arrayVariable = ListToArray(variableRiga,",",true,false)>
 
+        <!--- per ogni elemento modificato aggiorno il campo interessato facendomi riferimento al campo univoco "Variable" --->
         <cfloop index="indexComm" from="1" to="#ArrayLen(arrayModComm)#">
             <cfquery name="aggiornaComm" datasource="#application.DSN#">
                 update tesikcm.dictionary
@@ -76,9 +78,11 @@
         <cfset arrayModNotes = ListToArray(listModNotes,",",true,false)>
         <cfset arrayVariable = ListToArray(listVariable,",",true,false)>
         --->
+        <!--- salvo in degli array gli elementi delle liste passate come parametri ---> 
         <cfset arrayModNotes = ListToArray(testoModificatoNotes,",",true,false)>
         <cfset arrayVariable = ListToArray(variableRiga,",",true,false)>
         
+        <!--- per ogni elemento modificato aggiorno il campo interessato facendomi riferimento al campo univoco "Variable" --->
         <cfloop index="indexNotes" from="1" to="#ArrayLen(arrayModNotes)#">
             <cfquery name="aggiornaNotes" datasource="#application.DSN#">
                 update tesikcm.dictionary
@@ -88,10 +92,22 @@
         </cfloop>
     </cffunction>
 
+    <!--- salvo il nuovo dato nel database, nel caso i campi "Comment" e "Notes" non fossero stati inseriti salvo delle stringhe vuote --->
     <cffunction name="salvaNuovoDato" access="remote">
-        <cfquery name="salvaDati" datasource="#application.DSN#">
-            insert into tesikcm.dictionary (VARIABLE, DESCRIPTION, NOTES)
-            values ('#newVariable#', '#newComment#', '#newNotes#')
+        <!--- seleziono tutti i record "Variable" che sono uguali al dato scritto dall'utente --->
+        <cfquery name="cercaVar" datasource="#application.DSN#">
+            select tesikcm.dictionary.VARIABLE
+            from tesikcm.dictionary
+            where VARIABLE = '#newVariable#'
         </cfquery>
+        
+        <!--- nel caso il numero di record sia pari a 0, cioè non esistono record con lo stesso valore di quello inserito, salvo i dati nel database --->
+        <cfif #cercaVar.RecordCount# eq 0>
+            <cfquery name="salvaDati" datasource="#application.DSN#">
+                insert into tesikcm.dictionary (VARIABLE, DESCRIPTION, NOTES)
+                values ('#newVariable#', '#newComment#', '#newNotes#')
+            </cfquery>
+        </cfif>
+        
     </cffunction>
 </cfcomponent>
