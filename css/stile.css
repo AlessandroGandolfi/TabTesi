@@ -1,52 +1,48 @@
-/* definisco il colore dello sfondo di ogni pagina */
+/* colore dello sfondo di ogni pagina */
 body {
 	background-color:#FAFAFA;
 }
 
-/* definisco la grafica, la posizione e le dimensioni del riquadro 
-nella pagina principale di selezione */
-#divIndex {
-	/* dato del colore di sfondo */
-	background-color:#BDBDBD;
-	/* dato del colore del testo */
-	color:#000000;
-	/* arrotondo gli angoli del riquadro */
-	border-radius:35px;
-	/* dati della posizione, uso le percentuali per adattamento alla grandezza della pagina*/
-	position:absolute;
-	left:30%;
-	top:15%;
-	/* dati delle dimensioni, uso le percentuali per adattamento alla grandezza della pagina*/
-	height:45%;
-	width:40%;
-}
-
-/* definisco la posizione e le dimensioni del div contenente i bottoni 
-nelle pagine dove sono presenti le tabelle */
+/* dimensioni e posizione e le dimensioni del div contenente i bottoni */
 #formContBtn {
-	/* dati della posizione, uso le percentuali per adattamento alla grandezza della pagina */
 	position:absolute;
 	left:25%;
-	top:5%;
-	/* dati delle dimensioni, uso le percentuali per adattamento alla grandezza della pagina */
-	height:10%;
-	width:50%;
+	top:0%;
+	height:130px;
+	width:675px;
 }
 
-/* definisco la posizione del div contenente il bottone per poter tornare 
-alla pagina principale di selezione nelle pagine dove sono presenti le tabelle */
+/* dimensioni e posizione del bottone per poter salvare nuovi dati e modificare quelli esistenti */
 #btnSalva {
 	position:absolute;
-	left:5%;
-	top:20%;
+	left:60px;
+	top:20px;
+	width:250px;
 }
 
-/* definisco la posizione del div contenente il bottone per poter visualizzare 
-gli altri dati nelle pagine dove sono presenti le tabelle */
+/* dimensioni e posizione del bottone per poter eliminare i dati */
 #btnElimina {
 	position:absolute;
-	left:70%;
-	top:20%;
+	left:60px;
+	top:65px;
+	width:250px;
+}
+
+/* dimensioni e posizione del bottone per cercare i dati */
+#btnCerca {
+	position:absolute;
+	left:375px;
+	top:20px;
+	width:250px;
+}
+
+/* dimensioni e posizione della textbox per inserire il record dei dati cercati */
+#txtCerca {
+	position:absolute;
+	left:375px;
+	top:65px;
+	width:250px;
+	height:30px;
 }
 
 input[type=checkbox] {
@@ -59,16 +55,14 @@ input[type=checkbox] {
 
 /* definisco la posizione e le dimensioni del div contenente la tabella */
 #divTabella {
-	/* dati della posizione, uso le percentuali per adattamento alla grandezza della pagina */
 	position:absolute;
 	left:0%;
-	top:15%;
-	/* dati delle dimensioni, uso le percentuali per adattamento alla grandezza della pagina */
+	top:20%;
 	width:100%;
 	height:100%;
 }
 
-/* imposto le dimensioni delle textarea in modo che occupino tutto lo spazio della td */
+/* dimensioni delle textarea, occupano tutto lo spazio della td */
 textarea {
     width: 100%;
 	height: 100%;
@@ -76,9 +70,8 @@ textarea {
 	min-height: 100px;
 }
 
-/* definisco vari aspetti della tabella */
 table {
-	/* metto il margine per delimitare le caselle */
+	/* margine per delimitare le caselle */
 	margin:1px;
 	/* dato della larghezza della tabella */
 	width:100%;	
@@ -88,7 +81,6 @@ table {
 	border-spacing:3px;
 }
 
-/* definisco la grafica e la posizione delle scritte nelle caselle */
 td, th {
 	/* dato della grandezza del font */
 	font-size:11px;
@@ -100,23 +92,19 @@ td, th {
 	border-radius:2px;
 }
 
-/* definisco l'altezza minima delle td */ 
+/* altezza minima delle td */ 
 td {
 	height:50px;
 }
 
-/* prima classe che uso per distinguere meglio le righe tramite colori diversi */
+/* prima classe per distinguere meglio le righe tramite colori diversi */
 tr.color1 {
 	/* dato del colore di sfondo più scuro*/
 	background-color: #C0C0C0; 
 }
 
-/* seconda classe che uso per distinguere meglio le righe tramite colori diversi */
+/* seconda classe per distinguere meglio le righe tramite colori diversi */
 tr.color2 {
 	/* dato del colore di sfondo più chiaro*/
 	background-color: #E6E6E6; 
-}
-
-.tdPiccola {
-	width:10%;
 }
