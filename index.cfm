@@ -1,15 +1,15 @@
     <body>
         <!--- cfform per passare tutte le variabili al file "gestioneTabella.cfm" --->
-        <cfform name="form" id="form1" action="gestioneTabella.cfm">
+        <form name="form" id="form1" action="gestioneTabella.cfm" method="POST">
             <!--- si potrebbe utilizzare e cambiare per visualizzare dati diversi --->
             <cfset rigaInizio = 1>
             <!--- vengono utilizzati diversi div per una migliore gestione nel file di stile --->
             <div id="formContBtn">
                 <!--- bottoni usati per salvare modifiche e nuovi dati o eliminare dati già esistenti --->
-                <cfinput name="salvaDati" type="submit" id="btnSalva" value="Salva modifiche"></cfinput>
-                <cfinput name="eliminaDati" type="submit" id="btnElimina" value="Elimina dati"></cfinput>
+                <input name="salvaDati" type="submit" id="btnSalva" value="Salva modifiche">
+                <input name="eliminaDati" type="submit" id="btnElimina" value="Elimina dati">
                 <input name="txtCerca" type="text" id="txtCerca" placeholder="  Record variable da cercare">
-                <cfinput name="cercaVar" type="submit" id="btnCerca" value="Cerca variable"></cfinput>
+                <input name="cercaVar" type="submit" id="btnCerca" value="Cerca variable">
             </div>
             
             <!--- dialog di conferma di eliminazione dei dati --->
@@ -50,6 +50,6 @@
                     rigaVuota();
                 </script>
             </div>
-        </cfform>
+        </form>
     </body>
 </html>

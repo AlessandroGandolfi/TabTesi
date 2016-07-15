@@ -1,4 +1,6 @@
 <cfobject component="funzioni" name="objGestione">
+
+<cfdump var = "#form#">
 <!--- controllo quale bottone sia stato premuto, per eseguire funzioni diverse --->
 <cfif StructKeyExists(form, "eliminaDati")>
     <!--- controllo che almeno una checkbox sia stata checkata --->
@@ -13,7 +15,7 @@
 </cfif>
 
 <cfif StructKeyExists(form, "salvaDati")>
-    <!--- se sono state aperte delle textarea nella colonna "Comment" vengono aggiornate le caselle interessate --->
+	<!--- se sono state aperte delle textarea nella colonna "Comment" vengono aggiornate le caselle interessate --->
     <cfif IsDefined("txtModComm")>
         <!--- avvio delle funzioni per il salvataggio delle modifiche dei record "Comment" --->
         <cfinvoke component="#objGestione#" method="salvaModificheComm">

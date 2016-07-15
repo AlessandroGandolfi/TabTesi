@@ -27,8 +27,8 @@
                 where VARIABLE in (#ListQualify(cbElimina,"'")#)
             </cfquery>
             <cfcatch type="database">
-                <h1>Errore eliminazione dati</h1> 
                 <cfoutput> 
+                    <h1>Errore eliminazione dati</h1> 
                     <ul> 
                         <li><b>Messaggio:</b> #cfcatch.Message# 
                         <li><b>Codice nativo dell'errore:</b> #cfcatch.NativeErrorCode# 
@@ -36,6 +36,7 @@
                         <li><b>Dettagli:</b> #cfcatch.Detail# 
                     </ul> 
                 </cfoutput> 
+                <cfabort>
             </cfcatch>
         </cftry>
     </cffunction>
@@ -48,8 +49,8 @@
                 from tesikcm.v_dictionary_mantis
             </cfquery>
             <cfcatch type="database">
-                <h1>Errore alimentazione tabella</h1> 
                 <cfoutput> 
+                    <h1>Errore alimentazione tabella</h1> 
                     <ul> 
                         <li><b>Messaggio:</b> #cfcatch.Message# 
                         <li><b>Codice nativo dell'errore:</b> #cfcatch.NativeErrorCode# 
@@ -57,6 +58,7 @@
                         <li><b>Dettagli:</b> #cfcatch.Detail# 
                     </ul> 
                 </cfoutput> 
+                <cfabort>
             </cfcatch>
         </cftry>
         <!--- riga di intestazione --->
@@ -105,9 +107,9 @@
                     set DESCRIPTION = '#arrayModComm[indexComm]#'
                     where VARIABLE = '#arrayVariable[indexComm]#'
                 </cfquery>
-                <cfcatch type="database">
-                    <h1>Errore aggiornamento dati</h1> 
+                <cfcatch type="database"> 
                     <cfoutput> 
+                        <h1>Errore aggiornamento dati</h1>
                         <ul> 
                             <li><b>Messaggio:</b> #cfcatch.Message# 
                             <li><b>Codice nativo dell'errore:</b> #cfcatch.NativeErrorCode# 
@@ -115,6 +117,7 @@
                             <li><b>Dettagli:</b> #cfcatch.Detail# 
                         </ul> 
                     </cfoutput> 
+                    <cfabort>
                 </cfcatch>
             </cftry>
         </cfloop>
@@ -138,8 +141,8 @@
                     where VARIABLE = '#arrayVariable[indexNotes]#'
                 </cfquery>
                 <cfcatch type="database">
-                    <h1>Errore aggiornamento dati</h1> 
                     <cfoutput> 
+                        <h1>Errore aggiornamento dati</h1> 
                         <ul> 
                             <li><b>Messaggio:</b> #cfcatch.Message# 
                             <li><b>Codice nativo dell'errore:</b> #cfcatch.NativeErrorCode# 
@@ -147,6 +150,7 @@
                             <li><b>Dettagli:</b> #cfcatch.Detail# 
                         </ul> 
                     </cfoutput> 
+                    <cfabort>
                 </cfcatch>
             </cftry>
         </cfloop>
@@ -171,8 +175,8 @@
                 </cfquery>
             </cfif>
             <cfcatch type="database">
-                <h1>Errore inserimento dati</h1> 
                 <cfoutput> 
+                    <h1>Errore inserimento dati</h1> 
                     <ul> 
                         <li><b>Messaggio:</b> #cfcatch.Message# 
                         <li><b>Codice nativo dell'errore:</b> #cfcatch.NativeErrorCode# 
@@ -180,6 +184,7 @@
                         <li><b>Dettagli:</b> #cfcatch.Detail# 
                     </ul> 
                 </cfoutput> 
+                <cfabort>
             </cfcatch>
         </cftry>
     </cffunction>
@@ -193,8 +198,8 @@
                 where variable = '#varInserita#'
             </cfquery>
             <cfcatch type="database">
-                <h1>Errore aggiornamento dati</h1> 
                 <cfoutput> 
+                    <h1>Errore aggiornamento dati</h1> 
                     <ul> 
                         <li><b>Messaggio:</b> #cfcatch.Message# 
                         <li><b>Codice nativo dell'errore:</b> #cfcatch.NativeErrorCode# 
@@ -202,6 +207,7 @@
                         <li><b>Dettagli:</b> #cfcatch.Detail# 
                     </ul> 
                 </cfoutput> 
+                <cfabort>
             </cfcatch>
         </cftry>
         

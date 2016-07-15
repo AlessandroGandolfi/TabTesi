@@ -3,7 +3,7 @@
         <cfform name="form" id="form1" action="gestioneTabella.cfm">
             <!--- vengono utilizzati diversi div per una migliore gestione nel file di stile --->
             <div id="formContBtn">
-                <!--- bottoni usati per salvare modifiche e nuovi dati o eliminare dati già esistenti --->
+                <!--- bottoni usati per salvare, modificare, eliminare o cercare i dati nel database --->
                 <cfinput name="salvaDati" type="submit" id="btnSalva" value="Salva modifiche"></cfinput>
                 <cfinput name="eliminaDati" type="submit" id="btnElimina" value="Elimina dati"></cfinput>
                 <input name="txtCerca" type="text" id="txtCerca" placeholder="  Inserisci il record variable">
